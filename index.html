@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Er det bedst for alle?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" sizes="192x192" href="icon-192x192.png">
+  <link rel="apple-touch-icon" sizes="128x128" href="icon-128x128.png">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/intro.js/2.1.0/introjs.min.css">
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body style="background-image:url(bg.jpg); background-repeat:no-repeat; background-size:cover;">
+    <div id="content">
+        <h1 id="Ja" class="box hidden introjs-showElement"> JA </h1>
+        <h1 id="Nej" class="box hidden introjs-showElement"> NEJ </h1>
+        <h1 id="Spg" class="box introjs-showElement">Er det bedst for alle?</h1>
+    </div>
+    <div class="introjs-overlay" style="top: 0; bottom: 0; left: 0;right: 0; position: fixed; opacity: 0.8;"></div>
+<script>
+$( "#Spg" ).click(function() {
+  $( "#Spg" ).fadeOut("fast");
+  $( Math.random() >= 0.5 ? "#Ja" : "#Nej" ).fadeIn();
+});
+
+$( ".introjs-overlay, .hidden" ).click(function() {
+  $( "#Spg" ).fadeIn("fast");
+  $( "#Nej" ).fadeOut("fast");
+  $( "#Ja" ).fadeOut("fast");
+});
+</script>
+</body>
+</html>

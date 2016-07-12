@@ -3,7 +3,7 @@ index.html
 style.css
 bg.jpg
 https://cdn.jsdelivr.net/intro.js/2.1.0/introjs.min.css
-https://code.jquery.com/jquery-1.10.2.js
+https://code.jquery.com/jquery-1.10.2.min.js
 
 NETWORK:
 *

@@ -4,18 +4,16 @@ html, body {
 }
 
 #content {
-    height: 90%; 
-    width:100%;
-    display:flex;
+    height: auto;
+	min-height: 100%;
+    width: 100%;
+    display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .box {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 25px;
-    padding-right: 25px;
+    padding: 15px;
     border-radius: 10px
 }
 
@@ -31,7 +29,17 @@ html, body {
     background-color: red;
 }
 
-#Spg {
+.Spg {
     color: white;
     background-color: black;
+    overflow: hidden;
+    white-space: nowrap;
+    /* text-overflow: ellipsis; */
+}
+
+footer {
+	font-size: 150%;
+	text-align: center;
+	line-height: 2em;
+	margin-top: -2em;
 }

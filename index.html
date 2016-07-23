@@ -2,6 +2,7 @@
 <html manifest="bedstforalle.appcache">
 <head>
   <title>Er det bedst for alle?</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="manifest" href="manifest.json">
   <link rel="icon" sizes="192x192" href="icon-192x192.png">
@@ -18,7 +19,7 @@
         <h1 id="Spg" class="Spg box introjs-showElement">Er det bedst for alle?</h1>
     </div>
     <div class="introjs-overlay" style="top: 0; bottom: 0; left: 0;right: 0; position: fixed; opacity: 0.8;"></div>
-	<footer class="Spg hidden">K&aelig;lderbaren er &Aring;ben!</footer>
+	<footer class="Spg hidden">Kælderbaren er åben!</footer>
 
 <script>
 extra = 0;
@@ -27,7 +28,7 @@ $.ajax({
 	method: "GET",
 	url: "ajax.php?r=" + Math.random(),
     dataType: "text",
-    success: function(data) { if (data === "No") $("footer").removeClass("hidden"); }
+    success: function(data) { if (data !== "No") $("footer").removeClass("hidden"); }
 });
 
 var rand = function() {

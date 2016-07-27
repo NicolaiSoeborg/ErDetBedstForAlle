@@ -1,11 +1,11 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+/*ini_set('display_errors', 1);
+error_reporting(E_ALL);*/
 
 header('Content-Type: application/json');
 
 $result = apcu_fetch("KBOpen");
-if ($result === false || true) {
+if ($result === false) {
     //echo "console.log(\"Tjekker om KB er åben...\");";
     $xml = file_get_contents("http://xn--erklderbarenben-slbh.dk/");
     $a = strpos($xml, "<div id=\"svar\">");
@@ -25,10 +25,7 @@ if ($result === false || true) {
 
         } else apcu_store("Error", true, 60);
     } else apcu_store("Error", true, 60);
-}
-
-if (isset($_GET['debug']) && apcu_fetch("Error"))
-	echo "test\r\n";
+} else $result = "No";
 
 echo $result;
 ?>

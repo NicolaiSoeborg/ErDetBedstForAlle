@@ -22,13 +22,19 @@
 	<footer class="Spg hidden">Kælderbaren er åben!</footer>
 
 <script>
-extra = 0;
+extra = 0.0;
 
 $.ajax({
 	method: "GET",
 	url: "ajax.php?r=" + Math.random(),
     dataType: "text",
-    success: function(data) { if (data !== "No") $("footer").removeClass("hidden"); }
+    success: function(data) {
+        if (data !== "No") {
+            console.log("Det er bedst for alle!");
+            extra = 0.1;
+            $("footer").removeClass("hidden");
+        }
+    }
 });
 
 var rand = function() {

@@ -7,7 +7,7 @@
   <link rel="manifest" href="manifest.json">
   <link rel="icon" sizes="192x192" href="icon-192x192.png">
   <link rel="apple-touch-icon" sizes="128x128" href="icon-128x128.png">
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="style.css?1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/intro.js/2.2.0/introjs.min.css">
   <script src="https://cdn.jsdelivr.net/intro.js/2.2.0/intro.min.js"></script>
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>  
@@ -25,31 +25,45 @@
 extra = 0.0;
 
 $.ajax({
-	method: "GET",
-	url: "ajax.php?r=" + Math.random(),
-    dataType: "text",
-    success: function(data) {
-        if (data !== "No") {
-            console.log("Det er bedst for alle!");
-            extra = 0.1;
-            $("footer").removeClass("hidden");
-        }
+  method: "GET",
+  url: "ajax.php?r=" + Math.random(),
+  dataType: "text",
+  success: function(data) {
+    if (data !== "No") {
+      console.log("Det er bedst for alle!");
+      extra = 0.1;
+      $("footer").removeClass("hidden");
     }
+  },
+  error: function (data) {
+    console.log(data);
+  }
 });
 
 var rand = function() {
-	return Math.random() + extra >= 0.5;
+  return Math.random() + extra >= 0.5;
 }
 
+var duration = 100; // very fast
+
 $( ".Spg" ).click(function() {
-  $( "#Spg" ).fadeOut("fast");
-  $( rand() ? "#Ja" : "#Nej" ).fadeIn();
+  $( "#Spg" ).animate({opacity: 0, }, duration, function(){
+    $(this).addClass("hidden"); // #Spg
+    $( rand() ? "#Ja" : "#Nej" ).animate({opacity: 1}, duration, function() {
+      $(this).removeClass("hidden") // #Ja || #Nej
+    })
+  })
 });
 
 $( ".introjs-overlay, .hidden" ).click(function() {
-  $( "#Spg" ).fadeIn("fast");
-  $( "#Nej" ).fadeOut("fast");
-  $( "#Ja" ).fadeOut("fast");
+  $( "#Ja, #Nej" ).each(function() {
+    $(this).animate({opacity: 0}, duration/2, function(){
+      $(this).addClass("hidden"); // #Ja || #Nej
+      $( "#Spg" ).animate({opacity: 1}, duration/2, function() {
+        $(this).removeClass("hidden") // #Spg
+      })
+    })
+  })
 });
 
 introJs().start();

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html>
-<!-- <html manifest="bedstforalle.appcache"> -->
+<html manifest="bedstforalle.appcache">
 <head>
   <title>Er det bedst for alle?</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -22,7 +21,7 @@
 	<footer class="Spg hidden showElement"><a href="http://xn--erklderbarenben-slbh.dk/" style="color:blue;">Kælderbaren er åben!</a></footer>
     <div class="overlayer"></div>
 <script>
-extra = 0.0;
+var extra = 0.0;
 
 $.ajax({
   method: "GET",
@@ -47,7 +46,7 @@ var bedstforalle = function() {
 var duration = 100; // very fast
 
 $( ".Spg" ).click(function() {
-  $( "#Spg" ).animate({opacity: 0, }, duration, function(){
+  $( "#Spg" ).animate({opacity: 0}, duration, function(){
     $(this).addClass("hidden"); // #Spg
     $( bedstforalle() ? "#Ja" : "#Nej" ).animate({opacity: 1}, duration, function() {
       $(this).removeClass("hidden") // #Ja || #Nej

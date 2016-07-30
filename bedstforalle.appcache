@@ -1,8 +1,13 @@
 CACHE MANIFEST
+# Last updated 30-07-2016 18:49
 index.html
 style.css
 bg.jpg
 https://code.jquery.com/jquery-1.10.2.min.js
+
+# Less important
+manifest.json
+icon-48x48.png
 
 NETWORK:
 *

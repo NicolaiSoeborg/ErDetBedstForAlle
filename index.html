@@ -9,18 +9,22 @@
   <link rel="manifest" href="manifest.json">
   <link rel="icon" sizes="192x192" href="icon-192x192.png">
   <link rel="apple-touch-icon" sizes="128x128" href="icon-128x128.png">
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="style.css?123322">
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>  
 </head>
-<body style="background-image:url(bg.jpg); background-repeat:no-repeat; background-size:cover;">
+<body>
     <div id="content">
-        <h1 id="Ja"  class="box hidden showElement"> JA </h1>
-        <h1 id="Nej" class="box hidden showElement"> NEJ </h1>
-        <h1 id="Spg" class="Spg box showElement">Er det bedst for alle?</h1>
+        <h1 id="Spg" class="Spg box" style="z-index: 10000;">Er det bedst for alle?</h1>
+        <h1 id="Ja"  class="box hidden" style"z-index: 10001;"> JA </h1>
+        <h1 id="Nej" class="box hidden" style="z-index: 10002;"> NEJ </h1>
     </div>
-	<footer class="Spg hidden showElement"><a href="http://xn--erklderbarenben-slbh.dk/" style="color:blue;">Kælderbaren er åben!</a></footer>
-    <div class="overlayer"></div>
+	<footer class="Spg hidden" style="z-index: 10003;"><a href="http://xn--erklderbarenben-slbh.dk/" style="color:blue;">Kælderbaren er åben!</a></footer>
+    <div id="overlayer" style="z-index: 9999;"></div>
 <script>
+if (navigator.platform.indexOf("iPhone") != -1) {
+  $("#overlayer").detach();
+}
+
 var extra = 0.0;
 
 $.ajax({
@@ -34,8 +38,8 @@ $.ajax({
       $("footer").removeClass("hidden");
     }
   },
-  error: function (data) {
-    console.log(data);
+  error: function(err) {
+    console.log(err);
   }
 });
 
@@ -45,8 +49,8 @@ var bedstforalle = function() {
 
 var duration = 100; // very fast
 
-$( ".Spg" ).click(function() {
-  $( "#Spg" ).animate({opacity: 0}, duration, function(){
+$( "#Spg" ).click(function() {
+  $(this).animate({opacity: 0}, duration, function() {
     $(this).addClass("hidden"); // #Spg
     $( bedstforalle() ? "#Ja" : "#Nej" ).animate({opacity: 1}, duration, function() {
       $(this).removeClass("hidden") // #Ja || #Nej
@@ -54,9 +58,9 @@ $( ".Spg" ).click(function() {
   })
 });
 
-$( ".introjs-overlay, .hidden" ).click(function() {
+$( "#overlayer, #Ja, #Nej" ).click(function() { console.log("Clicked:"); console.log(this);
   $( "#Ja, #Nej" ).each(function() {
-    $(this).animate({opacity: 0}, duration/2, function(){
+    $(this).animate({opacity: 0}, duration/2, function() {
       $(this).addClass("hidden"); // #Ja || #Nej
       $( "#Spg" ).animate({opacity: 1}, duration/2, function() {
         $(this).removeClass("hidden") // #Spg

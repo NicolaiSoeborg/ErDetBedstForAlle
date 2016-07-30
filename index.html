@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html manifest="bedstforalle.appcache">
+<html>
+<!-- <html manifest="bedstforalle.appcache"> -->
 <head>
   <title>Er det bedst for alle?</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Nicolai Søborg">
+  <meta http-equiv="pragma" content="NO-CACHE">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" sizes="192x192" href="icon-192x192.png">
   <link rel="apple-touch-icon" sizes="128x128" href="icon-128x128.png">
-  <link rel="stylesheet" type="text/css" href="style.css?1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/intro.js/2.2.0/introjs.min.css">
-  <script src="https://cdn.jsdelivr.net/intro.js/2.2.0/intro.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>  
 </head>
 <body style="background-image:url(bg.jpg); background-repeat:no-repeat; background-size:cover;">
     <div id="content">
-        <h1 id="Ja"  class="box hidden introjs-showElement"> JA </h1>
-        <h1 id="Nej" class="box hidden introjs-showElement"> NEJ </h1>
-        <h1 id="Spg" class="Spg box introjs-showElement">Er det bedst for alle?</h1>
+        <h1 id="Ja"  class="box hidden showElement"> JA </h1>
+        <h1 id="Nej" class="box hidden showElement"> NEJ </h1>
+        <h1 id="Spg" class="Spg box showElement">Er det bedst for alle?</h1>
     </div>
-    <div class="introjs-overlay" style="top: 0; bottom: 0; left: 0;right: 0; position: fixed; opacity: 0.8;"></div>
-	<footer class="Spg hidden">Kælderbaren er åben!</footer>
-
+	<footer class="Spg hidden showElement"><a href="http://xn--erklderbarenben-slbh.dk/" style="color:blue;">Kælderbaren er åben!</a></footer>
+    <div class="overlayer"></div>
 <script>
 extra = 0.0;
 
@@ -40,7 +40,7 @@ $.ajax({
   }
 });
 
-var rand = function() {
+var bedstforalle = function() {
   return Math.random() + extra >= 0.5;
 }
 
@@ -49,7 +49,7 @@ var duration = 100; // very fast
 $( ".Spg" ).click(function() {
   $( "#Spg" ).animate({opacity: 0, }, duration, function(){
     $(this).addClass("hidden"); // #Spg
-    $( rand() ? "#Ja" : "#Nej" ).animate({opacity: 1}, duration, function() {
+    $( bedstforalle() ? "#Ja" : "#Nej" ).animate({opacity: 1}, duration, function() {
       $(this).removeClass("hidden") // #Ja || #Nej
     })
   })
@@ -65,8 +65,6 @@ $( ".introjs-overlay, .hidden" ).click(function() {
     })
   })
 });
-
-introJs().start();
 </script>
 </body>
 </html>

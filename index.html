@@ -21,7 +21,10 @@
 	<footer class="Spg hidden" style="z-index: 10003;"><a href="http://xn--erklderbarenben-slbh.dk/" style="color:blue;">Kælderbaren er åben!</a></footer>
     <div id="overlayer" style="z-index: 9999;"></div>
 <script>
-if (navigator.platform.indexOf("iPhone") != -1) {
+var UAis = function (s) {
+  return navigator.platform.indexOf(s) != -1;
+}
+if (UAis("iPhone") || UAis("iPad")) {
   $("#overlayer").detach();
 }
 
@@ -48,7 +51,6 @@ var bedstforalle = function() {
 }
 
 var duration = 100; // very fast
-
 $( "#Spg" ).click(function() {
   $(this).animate({opacity: 0}, duration, function() {
     $(this).addClass("hidden"); // #Spg
@@ -58,7 +60,7 @@ $( "#Spg" ).click(function() {
   })
 });
 
-$( "#overlayer, #Ja, #Nej" ).click(function() { console.log("Clicked:"); console.log(this);
+$( "#overlayer, #Ja, #Nej" ).click(function() {
   $( "#Ja, #Nej" ).each(function() {
     $(this).animate({opacity: 0}, duration/2, function() {
       $(this).addClass("hidden"); // #Ja || #Nej

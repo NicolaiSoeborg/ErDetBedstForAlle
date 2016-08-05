@@ -22,8 +22,6 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
-
-    /*-webkit-transform: translate3d(0,0,0); Safari er lort */
 }
 
 .box {

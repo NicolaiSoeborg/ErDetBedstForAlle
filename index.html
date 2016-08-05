@@ -9,23 +9,31 @@
   <link rel="manifest" href="manifest.json">
   <link rel="icon" sizes="192x192" href="icon-192x192.png">
   <link rel="apple-touch-icon" sizes="128x128" href="icon-128x128.png">
-  <link rel="stylesheet" type="text/css" href="style.css?123322">
+  <link rel="stylesheet" type="text/css" href="style.css">
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>  
 </head>
 <body>
     <div id="content">
-        <h1 id="Spg" class="Spg box" style="z-index: 10000;">Er det bedst for alle?</h1>
-        <h1 id="Ja"  class="box hidden" style"z-index: 10001;"> JA </h1>
-        <h1 id="Nej" class="box hidden" style="z-index: 10002;"> NEJ </h1>
+        <h1 id="Spg" class="Spg box"    style="z-index: 10000;">Er det bedst for alle?</h1>
+        <h1 id="Ja"  class="box hidden" style="z-index: 10001;">&nbsp;JA&nbsp;</h1>
+        <h1 id="Nej" class="box hidden" style="z-index: 10002;">&nbsp;NEJ&nbsp;</h1>
     </div>
-	<footer class="Spg hidden" style="z-index: 10003;"><a href="http://xn--erklderbarenben-slbh.dk/" style="color:blue;">Kælderbaren er åben!</a></footer>
+	<footer class="Spg hidden" style="z-index: 10003;"><a href="http://xn--erklderbarenben-slbh.dk/" target="_blank" style="color:blue;">Kælderbaren er åben!</a></footer>
     <div id="overlayer" style="z-index: 9999;"></div>
 <script>
 var UAis = function (s) {
   return navigator.platform.indexOf(s) != -1;
 }
-if (UAis("iPhone") || UAis("iPad")) {
+if (UAis("iPhone") || UAis("iPad")) { // Fix crappy browsers
   $("#overlayer").detach();
+  var crap = true;
+  $("#content").click(function () {
+    if ($("#Spg").hasClass("hidden") && crap) {
+      crap = false; // avoid stack overflows
+      $("#Ja").trigger("click");
+      crap = true;
+    }
+  });
 }
 
 var extra = 0.0;

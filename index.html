@@ -18,7 +18,7 @@
         <h1 id="Ja"  class="box hidden" style="z-index: 10001;">&nbsp;JA&nbsp;</h1>
         <h1 id="Nej" class="box hidden" style="z-index: 10002;">&nbsp;NEJ&nbsp;</h1>
     </div>
-	<footer class="Spg hidden" style="z-index: 10003;"><a href="http://xn--erklderbarenben-slbh.dk/" target="_blank" style="color:blue;">Kælderbaren er åben!</a></footer>
+	<footer class="Spg hidden" style="z-index: 10003;">Kælderbaren er <a href="http://xn--erklderbarenben-slbh.dk/" target="_blank" style="color:dodgerblue;">åben!</a></footer>
     <div id="overlayer" style="z-index: 9999;"></div>
 <script>
 var UAis = function (s) {
@@ -43,11 +43,13 @@ $.ajax({
   url: "ajax.php?r=" + Math.random(),
   dataType: "text",
   success: function(data) {
-    if (data !== "No") {
+    if (data === "Ja") {
       console.log("Det er bedst for alle!");
       extra = 0.1;
-      $("footer").removeClass("hidden");
+    } else {
+      $("footer").html("KB er åben? <a href=\"http://xn--erklderbarenben-slbh.dk/\" target=\"_blank\" style=\"color:dodgerblue;\">" + data + "</a>.");
     }
+    $("footer").removeClass("hidden");
   },
   error: function(err) {
     console.log(err);

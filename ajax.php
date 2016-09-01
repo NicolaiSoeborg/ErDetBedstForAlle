@@ -5,7 +5,7 @@ error_reporting(E_ALL);*/
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 
-$result = "Unknown";
+$result = "Ukendt";
 /*$result = apcu_fetch("KBOpen");
 if ($result === false) {*/
     //echo "console.log(\"Tjekker om KB er åben...\");";
@@ -15,13 +15,13 @@ if ($result === false) {*/
         $b = strpos($xml, "</div>", $a);
         if ($b !== FALSE) {
             $nope = array("False","Nope", "Nej","Beklager","Niksen Biksen","Niks", "No");
-            $yeah = array("True", "Yeah", "Ja", "Yeah", "Tjek",   "Jepper","Jep",  "Yes");
+            $yeah = array("True", "Yeah", "Ja", "Tjek",    "Jepper",       "Jep",  "Yes");
 
             $svar = substr($xml, $a+15, $b-($a+15));
 
             $result = $svar;
-            if (in_array($svar, $yeah)) $result = "Yes";
-            if (in_array($svar, $nope)) $result = "No";
+            if (in_array($svar, $yeah)) $result = "Ja";
+            if (in_array($svar, $nope)) $result = "Nej";
 
             //apcu_store("KBOpen", $result, 15*60); // Cache in 15 min
 

@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="Nicolai Søborg">
   <meta http-equiv="pragma" content="NO-CACHE">
-  <link rel="manifest" href="manifest.json">
   <link rel="icon" sizes="192x192" href="icon-192x192.png">
   <link rel="apple-touch-icon" sizes="128x128" href="icon-128x128.png">
   <link rel="stylesheet" type="text/css" href="style.css">
@@ -44,11 +43,11 @@ $.ajax({
   dataType: "text",
   success: function(data) {
     if (data === "Ja") {
-      console.log("Det er bedst for alle!");
       extra = 0.1;
-    } else {
-      $("footer").html("Er kælderbaren åben? <a href=\"http://xn--erklderbarenben-slbh.dk/\" target=\"_blank\" style=\"color:dodgerblue;\">" + data + "</a>.");
+    } else if ((xhr.getResponseHeader("content-type") || "").indexOf("text/plain") == -1) {
+      data = "Ukendt"
     }
+    $("footer").html("Er kælderbaren åben? <a href=\"http://xn--erklderbarenben-slbh.dk/\" target=\"_blank\" style=\"color:dodgerblue;\">" + data + "</a>.");
     $("footer").removeClass("hidden");
   },
   error: function(err) {

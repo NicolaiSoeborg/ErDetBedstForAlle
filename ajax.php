@@ -3,7 +3,7 @@
 error_reporting(E_ALL);*/
 
 header('Access-Control-Allow-Origin: *');
-header('Content-Type: application/json');
+header('Content-Type: text/plain');
 
 $result = "Ukendt";
 /*$result = apcu_fetch("KBOpen");
